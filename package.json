@@ -1,8 +1,8 @@
 {
   "name": "api-global-holidays-service",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "API Global Holidays Service",
+  "author": "William Koller, <williamkoller404@gmail.com>",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

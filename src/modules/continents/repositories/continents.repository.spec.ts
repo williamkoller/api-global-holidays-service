@@ -26,11 +26,7 @@ describe('ContinentRepository', () => {
 
     continentRepository.save = jest.fn();
     continentRepository.createQueryBuilder = jest.fn().mockReturnValue({
-      select: jest.fn().mockReturnThis(),
-      from: jest.fn().mockReturnThis(),
-      leftJoinAndSelect: jest.fn().mockReturnThis(),
       where: jest.fn().mockReturnThis(),
-      orderBy: jest.fn().mockReturnThis(),
       getOne: jest.fn().mockResolvedValue('África'),
     });
   });

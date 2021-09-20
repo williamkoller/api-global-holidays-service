@@ -19,4 +19,8 @@ export class ContinentsRepository extends Repository<ContinentEntity> {
       .where('(continents.name ILIKE :name)', { name: `%${name}%` })
       .getOne();
   }
+
+  public async loadById(id: number): Promise<ContinentEntity> {
+    return await this.findOne({ where: { id } });
+  }
 }

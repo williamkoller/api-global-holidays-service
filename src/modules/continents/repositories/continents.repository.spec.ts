@@ -3,9 +3,16 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AddContinentDto } from '../dtos/add-continent/add-continent.dto';
 import { ContinentsRepository } from './continents.repository';
 
+type mockQueryType = {
+  where: {
+    id: number;
+  };
+};
+
 describe('ContinentRepository', () => {
   let continentsRepository: ContinentsRepository;
   let mockData: AddContinentDto;
+  let mockQuery: mockQueryType;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -24,7 +31,14 @@ describe('ContinentRepository', () => {
       urbanPopulation: 40,
     } as ContinentEntity;
 
+    mockQuery = {
+      where: {
+        id: 1,
+      },
+    };
+
     continentsRepository.save = jest.fn();
+    continentsRepository.findOne = jest.fn();
     continentsRepository.createQueryBuilder = jest.fn().mockReturnValue({
       where: jest.fn().mockReturnThis(),
       getOne: jest.fn().mockResolvedValue('África'),
@@ -56,5 +70,11 @@ describe('ContinentRepository', () => {
       'continents',
     );
     expect(continentsRepository.createQueryBuilder).toBeTruthy();
+  });
+
+  it('should be called loadById with correct params', async () => {
+    continentsRepository.findOne = jest.fn().mockReturnValue(1);
+    await continentsRepository.loadById(1);
+    expect(continentsRepository.findOne).toBeCalledWith(mockQuery);
   });
 });

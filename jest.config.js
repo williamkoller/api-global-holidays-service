@@ -5,6 +5,8 @@ module.exports = {
     '!<rootDir>/src/**/**/**.module.ts',
     '!<rootDir>/src/config/**.ts',
     '!<rootDir>/src/infra/**',
+    '!<rootDir>/src/main.ts',
+    '!<rootDir>/src/modules/**/dtos/**',
   ],
   coverageDirectory: 'coverage',
   testEnvironment: 'node',

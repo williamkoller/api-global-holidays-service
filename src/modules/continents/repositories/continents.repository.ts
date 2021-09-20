@@ -13,4 +13,10 @@ export class ContinentsRepository extends Repository<ContinentEntity> {
     );
     return await this.save(continentCreated);
   }
+
+  public async loadByName(name: string): Promise<ContinentEntity> {
+    return await this.createQueryBuilder('continents')
+      .where('(continents.name ILIKE :name)', { name: `%${name}%` })
+      .getOne();
+  }
 }

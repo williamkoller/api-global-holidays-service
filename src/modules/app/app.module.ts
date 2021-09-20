@@ -1,7 +1,10 @@
 import envFilename from '@/config/env-filename';
 import { environments } from '@/config/environments';
-import { Module } from '@nestjs/common';
+import { configService } from '@/infra/typeorm/config/config.service';
+import { forwardRef, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ContinentsModule } from '@/modules/continents/continents.module';
 
 @Module({
   imports: [
@@ -10,6 +13,8 @@ import { ConfigModule } from '@nestjs/config';
       envFilePath: envFilename.environment,
       load: [environments],
     }),
+    TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
+    forwardRef(() => ContinentsModule),
   ],
   controllers: [],
   providers: [],

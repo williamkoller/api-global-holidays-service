@@ -25,6 +25,14 @@ describe('ContinentRepository', () => {
     } as ContinentEntity;
 
     continentRepository.save = jest.fn();
+    continentRepository.createQueryBuilder = jest.fn().mockReturnValue({
+      select: jest.fn().mockReturnThis(),
+      from: jest.fn().mockReturnThis(),
+      leftJoinAndSelect: jest.fn().mockReturnThis(),
+      where: jest.fn().mockReturnThis(),
+      orderBy: jest.fn().mockReturnThis(),
+      getOne: jest.fn().mockResolvedValue('África'),
+    });
   });
 
   it('should be defined', (): void => {
@@ -40,5 +48,10 @@ describe('ContinentRepository', () => {
   it('should be returns created data', async (): Promise<void> => {
     (continentRepository.save as jest.Mock).mockReturnValue(mockData);
     expect(await continentRepository.addContinent(mockData)).toEqual(mockData);
+  });
+
+  it('should be called loadByName with correct params', async (): Promise<void> => {
+    const result = await continentRepository.loadByName('África');
+    expect(result).toEqual('África');
   });
 });

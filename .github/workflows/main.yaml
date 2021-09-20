@@ -17,7 +17,7 @@ jobs:
       - name: Use Node.js 14.x
         uses: actions/setup-node@v2
         with:
-          version: 14.x
+          node-version: 14.x
 
       - name: Run install dependencies and running tests
         run: |
@@ -27,4 +27,6 @@ jobs:
       - name: Coveralls
         uses: actions/setup-node@v1
         with:
+          repo-token: ${{ github.token }}
+          repository: ${{ github.repository }}
           GITHUB_TOKEN: ${{ github.token }}

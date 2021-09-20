@@ -1,3 +1,14 @@
+type EnvironmentType = {
+  nodeEnv: string;
+  appUrl: string;
+  port: number;
+  secret: string;
+  expiresIn: string;
+  defaultStrategy: string;
+  property: string;
+  session: string;
+};
+
 export const environments = (): EnvironmentType => {
   return {
     nodeEnv: process.env.NODE_ENV,
@@ -9,15 +20,4 @@ export const environments = (): EnvironmentType => {
     property: process.env.PROPERTY_USER,
     session: process.env.SESSION,
   };
-};
-
-type EnvironmentType = {
-  nodeEnv: string;
-  appUrl: string;
-  port: number;
-  secret: string;
-  expiresIn: string;
-  defaultStrategy: string;
-  property: string;
-  session: string;
 };

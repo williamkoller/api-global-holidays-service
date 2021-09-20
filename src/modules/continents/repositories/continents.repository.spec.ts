@@ -31,27 +31,27 @@ describe('ContinentRepository', () => {
     });
   });
 
-  it('should be defined', (): void => {
+  it('should be defined', () => {
     expect(continentsRepository).toBeDefined();
   });
 
-  it('should be called save with correct params', async (): Promise<void> => {
+  it('should be called save with correct params', async () => {
     continentsRepository.save = jest.fn().mockReturnValue(mockData);
     await continentsRepository.addContinent(mockData);
     expect(continentsRepository.save).toBeCalledWith(mockData);
   });
 
-  it('should be returns created data', async (): Promise<void> => {
+  it('should be returns created data', async () => {
     (continentsRepository.save as jest.Mock).mockReturnValue(mockData);
     expect(await continentsRepository.addContinent(mockData)).toEqual(mockData);
   });
 
-  it('should be called loadByName with correct params', async (): Promise<void> => {
+  it('should be called loadByName with correct params', async () => {
     const result = await continentsRepository.loadByName('África');
     expect(result).toEqual('África');
   });
 
-  it('should be called continentsRepository with createQueryBuilder must be true', async (): Promise<void> => {
+  it('should be called continentsRepository with createQueryBuilder must be true', async () => {
     (continentsRepository.createQueryBuilder as jest.Mock).mockReturnValue(
       'continents',
     );

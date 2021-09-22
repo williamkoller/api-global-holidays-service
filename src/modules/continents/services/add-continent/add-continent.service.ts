@@ -1,5 +1,5 @@
 import { ContinentEntity } from '@/infra/typeorm/entities/continent-entity/continent.entity';
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { AddContinentDto } from '../../dtos/add-continent/add-continent.dto';
 import { ContinentsRepository } from '../../repositories/continents.repository';
 
@@ -10,6 +10,6 @@ export class AddContinentService {
   public async addContinent(
     addContinentDto: AddContinentDto,
   ): Promise<ContinentEntity> {
-    throw new InternalServerErrorException();
+    return await this.continentsRepo.addContinent(addContinentDto);
   }
 }

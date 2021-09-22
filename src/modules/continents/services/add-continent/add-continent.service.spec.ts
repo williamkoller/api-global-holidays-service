@@ -1,3 +1,4 @@
+import { ContinentEntity } from '@/infra/typeorm/entities/continent-entity/continent.entity';
 import { InternalServerErrorException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { ContinentsRepository } from '../../repositories/continents.repository';
@@ -7,6 +8,7 @@ describe('AddContinentService', () => {
   let addContinentService: AddContinentService;
   let continentsRepository: ContinentsRepository;
   let mockInvalid;
+  let mockData: ContinentEntity;
 
   beforeEach(async () => {
     const continentsRepositoryMock = {
@@ -26,6 +28,15 @@ describe('AddContinentService', () => {
       name: 'INVALID',
     };
 
+    mockData = {
+      name: 'America',
+      territorialExtension: 30198835,
+      totalCountries: 53,
+      population: 1100000000,
+      demographicDensity: 34,
+      urbanPopulation: 40,
+    } as ContinentEntity;
+
     addContinentService = module.get<AddContinentService>(AddContinentService);
     continentsRepository =
       module.get<ContinentsRepository>(ContinentsRepository);
@@ -43,6 +54,11 @@ describe('AddContinentService', () => {
       await expect(
         addContinentService.addContinent(mockInvalid),
       ).rejects.toThrow(new InternalServerErrorException());
+    });
+
+    it('should be called continentsRepository with correct params', async () => {
+      await addContinentService.addContinent(mockData);
+      expect(continentsRepository.addContinent).toBeCalledWith(mockData);
     });
   });
 });

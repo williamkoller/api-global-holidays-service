@@ -1,5 +1,8 @@
 import { ContinentEntity } from '@/infra/typeorm/entities/continent-entity/continent.entity';
-import { InternalServerErrorException } from '@nestjs/common';
+import {
+  ConflictException,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { ContinentsRepository } from '../../repositories/continents.repository';
 import { AddContinentService } from './add-continent.service';
@@ -60,6 +63,15 @@ describe('AddContinentService', () => {
     it('should be called continentsRepository with correct params', async () => {
       await addContinentService.addContinent(mockData);
       expect(continentsRepository.addContinent).toBeCalledWith(mockData);
+    });
+
+    it('should be throw if name already exists', async () => {
+      (continentsRepository.loadByName as jest.Mock).mockRejectedValue(
+        new ConflictException(),
+      );
+      await expect(
+        addContinentService.addContinent(mockInvalid),
+      ).rejects.toThrow(new ConflictException());
     });
 
     it('should be return when repository return', async () => {

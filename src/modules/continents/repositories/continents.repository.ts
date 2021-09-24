@@ -20,4 +20,8 @@ export class ContinentsRepository extends Repository<ContinentEntity> {
   public async loadById(id: number): Promise<ContinentEntity> {
     return await this.findOne({ where: { id } });
   }
+
+  public async loadAll(): Promise<ContinentEntity[]> {
+    return await this.find();
+  }
 }

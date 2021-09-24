@@ -13,6 +13,7 @@ describe('ContinentRepository', () => {
   let continentsRepository: ContinentsRepository;
   let mockData: AddContinentDto;
   let mockQuery: mockQueryType;
+  let mockDataArray;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -31,6 +32,17 @@ describe('ContinentRepository', () => {
       urbanPopulation: 40,
     } as ContinentEntity;
 
+    mockDataArray = [
+      {
+        name: 'America',
+        territorialExtension: 30198835,
+        numberOfCountries: 53,
+        population: 1100000000,
+        demographicDensity: 34,
+        urbanPopulation: 40,
+      },
+    ];
+
     mockQuery = {
       where: {
         id: 1,
@@ -40,6 +52,7 @@ describe('ContinentRepository', () => {
     continentsRepository.save = jest.fn();
     continentsRepository.create = jest.fn();
     continentsRepository.findOne = jest.fn();
+    continentsRepository.find = jest.fn();
     continentsRepository.createQueryBuilder = jest.fn().mockReturnValue({
       where: jest.fn().mockReturnThis(),
       getOne: jest.fn().mockResolvedValue('África'),
@@ -78,5 +91,11 @@ describe('ContinentRepository', () => {
     continentsRepository.findOne = jest.fn().mockReturnValue(1);
     await continentsRepository.loadById(1);
     expect(continentsRepository.findOne).toBeCalledWith(mockQuery);
+  });
+
+  it('should be called loadAll with correct params', async () => {
+    continentsRepository.find = jest.fn().mockReturnValue(mockDataArray);
+    await continentsRepository.loadAll();
+    expect(await continentsRepository.find()).toEqual(mockDataArray);
   });
 });

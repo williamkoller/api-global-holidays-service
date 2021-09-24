@@ -66,9 +66,7 @@ describe('AddContinentService', () => {
     });
 
     it('should be throw if name already exists', async () => {
-      (continentsRepository.loadByName as jest.Mock).mockRejectedValue(
-        new ConflictException(),
-      );
+      continentsRepository.loadByName = jest.fn().mockReturnValue('America');
       await expect(
         addContinentService.addContinent(mockInvalid),
       ).rejects.toThrow(new ConflictException());

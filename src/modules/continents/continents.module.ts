@@ -3,9 +3,10 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AddContinentService } from './services/add-continent/add-continent.service';
 import { ContinentsController } from './controllers/continents.controller';
+import { ContinentsRepository } from './repositories/continents.repository';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ContinentEntity])],
+  imports: [TypeOrmModule.forFeature([ContinentEntity, ContinentsRepository])],
   providers: [AddContinentService],
   controllers: [ContinentsController],
 })

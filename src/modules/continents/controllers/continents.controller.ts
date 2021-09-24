@@ -1,5 +1,5 @@
 import { ContinentEntity } from '@/infra/typeorm/entities/continent-entity/continent.entity';
-import { BadRequestException, Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { AddContinentDto } from '../dtos/add-continent/add-continent.dto';
 import { AddContinentService } from '../services/add-continent/add-continent.service';
 
@@ -11,6 +11,6 @@ export class ContinentsController {
   public async addContinent(
     @Body() addContinentDto: AddContinentDto,
   ): Promise<ContinentEntity> {
-    throw new BadRequestException();
+    return await this.addContinentService.addContinent(addContinentDto);
   }
 }

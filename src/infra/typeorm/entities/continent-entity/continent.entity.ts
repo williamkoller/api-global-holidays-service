@@ -10,7 +10,7 @@ export class ContinentEntity extends BaseEntity {
   territorialExtension: number;
 
   @Column({ type: 'int4', nullable: false })
-  totalCountries: number;
+  numberOfCountries: number;
 
   @Column({ type: 'int4', nullable: false })
   population: number;

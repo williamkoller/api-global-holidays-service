@@ -35,7 +35,7 @@ describe('AddContinentService', () => {
     mockData = {
       name: 'America',
       territorialExtension: 30198835,
-      totalCountries: 53,
+      numberOfCountries: 53,
       population: 1100000000,
       demographicDensity: 34,
       urbanPopulation: 40,

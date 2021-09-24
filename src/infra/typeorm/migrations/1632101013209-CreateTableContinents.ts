@@ -6,7 +6,7 @@ export class CreateTableContinents1632101013209 implements MigrationInterface {
         "id" SERIAL NOT NULL,
         "name" character varying NOT NULL,
         "territorialExtension" integer NOT NULL,
-        "totalContries" integer NOT NULL,
+        "numberOfCountries" integer NOT NULL,
         "population" integer NOT NULL,
         "demographicDensity" integer NOT NULL,
         "urbanPopulation" integer NOT NULL,

@@ -25,7 +25,7 @@ describe('ContinentRepository', () => {
     mockData = {
       name: 'America',
       territorialExtension: 30198835,
-      totalCountries: 53,
+      numberOfCountries: 53,
       population: 1100000000,
       demographicDensity: 34,
       urbanPopulation: 40,
@@ -38,6 +38,7 @@ describe('ContinentRepository', () => {
     };
 
     continentsRepository.save = jest.fn();
+    continentsRepository.create = jest.fn();
     continentsRepository.findOne = jest.fn();
     continentsRepository.createQueryBuilder = jest.fn().mockReturnValue({
       where: jest.fn().mockReturnThis(),
@@ -51,6 +52,7 @@ describe('ContinentRepository', () => {
 
   it('should be called save with correct params', async () => {
     continentsRepository.save = jest.fn().mockReturnValue(mockData);
+    continentsRepository.create = jest.fn().mockReturnValue(mockData);
     await continentsRepository.addContinent(mockData);
     expect(continentsRepository.save).toBeCalledWith(mockData);
   });

@@ -94,11 +94,13 @@ describe('AddContinentService', () => {
       );
     });
 
-    it('should be return loadAll', async () => {
-      (continentsRepository.loadAll as jest.Mock).mockReturnValue(
-        mockDataArray,
-      );
-      expect(await addContinentService.loadAll()).toEqual(mockDataArray);
+    describe('loadAll()', () => {
+      it('should be return loadAll', async () => {
+        (continentsRepository.loadAll as jest.Mock).mockReturnValue(
+          mockDataArray,
+        );
+        expect(await addContinentService.loadAll()).toEqual(mockDataArray);
+      });
     });
   });
 });

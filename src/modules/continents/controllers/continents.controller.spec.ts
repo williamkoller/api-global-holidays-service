@@ -79,9 +79,11 @@ describe('ContinentsController', () => {
       expect(await controller.addContinent(mockData)).toEqual(mockData);
     });
 
-    it('should be returns loadAll', async () => {
-      (service.loadAll as jest.Mock).mockReturnValue(mockDataArray);
-      expect(await controller.loadAll()).toEqual(mockDataArray);
+    describe('loadAll()', () => {
+      it('should be returns loadAll', async () => {
+        (service.loadAll as jest.Mock).mockReturnValue(mockDataArray);
+        expect(await controller.loadAll()).toEqual(mockDataArray);
+      });
     });
   });
 });

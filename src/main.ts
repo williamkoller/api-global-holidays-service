@@ -13,6 +13,8 @@ async function bootstrap(): Promise<void> {
     exposedHeaders: '*',
   });
 
+  app.setGlobalPrefix('api');
+
   const config = app.get<ConfigService>(ConfigService);
   const port = config.get<string>('port');
 

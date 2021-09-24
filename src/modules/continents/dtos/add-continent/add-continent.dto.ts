@@ -11,7 +11,7 @@ export class AddContinentDto {
 
   @IsNumberString()
   @IsNotEmpty()
-  totalCountries: number;
+  numberOfCountries: number;
 
   @IsNumberString()
   @IsNotEmpty()

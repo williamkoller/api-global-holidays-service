@@ -10,7 +10,9 @@ export class AddContinentService {
   public async addContinent(
     addContinentDto: AddContinentDto,
   ): Promise<ContinentEntity> {
-    const continent = this.continentsRepo.loadByName(addContinentDto.name);
+    const continent = await this.continentsRepo.loadByName(
+      addContinentDto.name,
+    );
 
     if (continent) {
       throw new ConflictException();

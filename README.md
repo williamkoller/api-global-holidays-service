@@ -1,5 +1,4 @@
 [![CI](https://github.com/williamkoller/api-global-holidays-service/actions/workflows/main.yml/badge.svg)](https://github.com/williamkoller/api-global-holidays-service/actions/workflows/main.yml)
-[![Coverage Status](https://coveralls.io/repos/github/williamkoller/api-global-holidays-service/badge.svg?branch=develop)](https://coveralls.io/github/williamkoller/api-global-holidays-service?branch=develop)
 [![Open Source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/)
 ![GitHub top language](https://img.shields.io/github/languages/top/williamkoller/api-global-holidays-service)
 ![GitHub language count](https://img.shields.io/github/languages/count/williamkoller/api-global-holidays-service)

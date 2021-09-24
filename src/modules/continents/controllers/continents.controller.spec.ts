@@ -60,5 +60,10 @@ describe('ContinentsController', () => {
       controller.addContinent(mockData);
       expect(service.addContinent).toBeCalledWith(mockData);
     });
+
+    it('should be returns when service returns', async () => {
+      (service.addContinent as jest.Mock).mockReturnValue(mockData);
+      expect(await controller.addContinent(mockData)).toEqual(mockData);
+    });
   });
 });

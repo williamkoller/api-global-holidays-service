@@ -7,10 +7,7 @@ export class ContinentsRepository extends Repository<ContinentEntity> {
   public async addContinent(
     addContinentDto: AddContinentDto,
   ): Promise<ContinentEntity> {
-    const continentCreated = Object.assign(
-      {} as ContinentEntity,
-      addContinentDto,
-    );
+    const continentCreated = this.create(addContinentDto);
     return await this.save(continentCreated);
   }
 

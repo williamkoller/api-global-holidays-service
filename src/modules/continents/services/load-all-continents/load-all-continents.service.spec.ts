@@ -53,7 +53,7 @@ describe('LoadAllContinents', () => {
     );
   });
 
-  it('should be return loadAll', async () => {
+  it('should be return loadAll with data', async () => {
     (continentsRepo.loadAll as jest.Mock).mockReturnValue(mockDataArray);
     expect(await loadAllContinentsService.loadAll()).toEqual(mockDataArray);
   });

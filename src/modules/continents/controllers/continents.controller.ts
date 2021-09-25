@@ -2,10 +2,14 @@ import { ContinentEntity } from '@/infra/typeorm/entities/continent-entity/conti
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AddContinentDto } from '../dtos/add-continent/add-continent.dto';
 import { AddContinentService } from '../services/add-continent/add-continent.service';
+import { LoadAllContinentsService } from '../services/load-all-continents/load-all-continents.service';
 
 @Controller('continents')
 export class ContinentsController {
-  constructor(private readonly addContinentService: AddContinentService) {}
+  constructor(
+    private readonly addContinentService: AddContinentService,
+    private readonly loadAllContinentsService: LoadAllContinentsService,
+  ) {}
 
   @Post()
   public async addContinent(
@@ -16,6 +20,6 @@ export class ContinentsController {
 
   @Get()
   public async loadAll(): Promise<ContinentEntity[]> {
-    return await this.addContinentService.loadAll();
+    return await this.loadAllContinentsService.loadAll();
   }
 }

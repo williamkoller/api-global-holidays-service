@@ -2,11 +2,13 @@ import { ContinentEntity } from '@/infra/typeorm/entities/continent-entity/conti
 import { BadRequestException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AddContinentService } from '../services/add-continent/add-continent.service';
+import { LoadAllContinentsService } from '../services/load-all-continents/load-all-continents.service';
 import { ContinentsController } from './continents.controller';
 
 describe('ContinentsController', () => {
   let controller: ContinentsController;
-  let service: AddContinentService;
+  let addContinentService: AddContinentService;
+  let loadAllContinentsService: LoadAllContinentsService;
   let mockInvalid;
   let mockData: ContinentEntity;
   let mockDataArray;
@@ -47,12 +49,19 @@ describe('ContinentsController', () => {
           provide: AddContinentService,
           useFactory: () => mockService,
         },
+        {
+          provide: LoadAllContinentsService,
+          useFactory: () => mockService,
+        },
       ],
       controllers: [ContinentsController],
     }).compile();
 
     controller = module.get<ContinentsController>(ContinentsController);
-    service = module.get<AddContinentService>(AddContinentService);
+    addContinentService = module.get<AddContinentService>(AddContinentService);
+    loadAllContinentsService = module.get<LoadAllContinentsService>(
+      LoadAllContinentsService,
+    );
   });
 
   it('should be defined', () => {
@@ -61,7 +70,7 @@ describe('ContinentsController', () => {
 
   describe('addContinent()', () => {
     it('should be throw when service throw', async () => {
-      (service.addContinent as jest.Mock).mockRejectedValue(
+      (addContinentService.addContinent as jest.Mock).mockRejectedValue(
         new BadRequestException(),
       );
       await expect(controller.addContinent(mockInvalid)).rejects.toThrow(
@@ -71,17 +80,19 @@ describe('ContinentsController', () => {
 
     it('should be called service with correct params', async () => {
       controller.addContinent(mockData);
-      expect(service.addContinent).toBeCalledWith(mockData);
+      expect(addContinentService.addContinent).toBeCalledWith(mockData);
     });
 
     it('should be returns when service returns', async () => {
-      (service.addContinent as jest.Mock).mockReturnValue(mockData);
+      (addContinentService.addContinent as jest.Mock).mockReturnValue(mockData);
       expect(await controller.addContinent(mockData)).toEqual(mockData);
     });
 
     describe('loadAll()', () => {
       it('should be returns loadAll', async () => {
-        (service.loadAll as jest.Mock).mockReturnValue(mockDataArray);
+        (loadAllContinentsService.loadAll as jest.Mock).mockReturnValue(
+          mockDataArray,
+        );
         expect(await controller.loadAll()).toEqual(mockDataArray);
       });
     });

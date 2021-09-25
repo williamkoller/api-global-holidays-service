@@ -20,8 +20,4 @@ export class AddContinentService {
 
     return await this.continentsRepo.addContinent(addContinentDto);
   }
-
-  public async loadAll(): Promise<ContinentEntity[]> {
-    return await this.continentsRepo.loadAll();
-  }
 }

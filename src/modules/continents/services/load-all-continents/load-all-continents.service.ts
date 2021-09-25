@@ -1,9 +1,12 @@
 import { ContinentEntity } from '@/infra/typeorm/entities/continent-entity/continent.entity';
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { ContinentsRepository } from '../../repositories/continents.repository';
 
 @Injectable()
 export class LoadAllContinentsService {
-  public async loadAll(): Promise<ContinentEntity> {
-    throw new BadRequestException();
+  constructor(private readonly continentsRepo: ContinentsRepository) {}
+
+  public async loadAll(): Promise<ContinentEntity[]> {
+    return await this.continentsRepo.loadAll();
   }
 }

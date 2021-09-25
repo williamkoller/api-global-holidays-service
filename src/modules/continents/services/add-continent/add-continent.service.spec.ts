@@ -12,13 +12,11 @@ describe('AddContinentService', () => {
   let continentsRepository: ContinentsRepository;
   let mockInvalid;
   let mockData: ContinentEntity;
-  let mockDataArray;
 
   beforeEach(async () => {
     const continentsRepositoryMock = {
       addContinent: jest.fn(),
       loadByName: jest.fn(),
-      loadAll: jest.fn(),
     };
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -42,17 +40,6 @@ describe('AddContinentService', () => {
       demographicDensity: 34,
       urbanPopulation: 40,
     } as ContinentEntity;
-
-    mockDataArray = [
-      {
-        name: 'America',
-        territorialExtension: 30198835,
-        numberOfCountries: 53,
-        population: 1100000000,
-        demographicDensity: 34,
-        urbanPopulation: 40,
-      },
-    ];
 
     addContinentService = module.get<AddContinentService>(AddContinentService);
     continentsRepository =
@@ -92,15 +79,6 @@ describe('AddContinentService', () => {
       expect(await addContinentService.addContinent(mockData)).toEqual(
         mockData,
       );
-    });
-
-    describe('loadAll()', () => {
-      it('should be return loadAll', async () => {
-        (continentsRepository.loadAll as jest.Mock).mockReturnValue(
-          mockDataArray,
-        );
-        expect(await addContinentService.loadAll()).toEqual(mockDataArray);
-      });
     });
   });
 });

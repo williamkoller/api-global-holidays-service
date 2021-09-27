@@ -1,6 +1,6 @@
 import { ContinentEntity } from '@/infra/typeorm/entities/continent-entity/continent.entity';
 import { Test, TestingModule } from '@nestjs/testing';
-import { AddContinentDto } from '../dtos/add-continent/add-continent.dto';
+import { AddContinentDto } from '@/modules/continents/dtos/add-continent/add-continent.dto';
 import { ContinentsRepository } from './continents.repository';
 
 type mockQueryType = {

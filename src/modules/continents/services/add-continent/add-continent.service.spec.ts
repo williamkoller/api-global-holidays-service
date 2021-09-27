@@ -4,7 +4,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { ContinentsRepository } from '../../repositories/continents.repository';
+import { ContinentsRepository } from '@/modules/continents/repositories/continents.repository';
 import { AddContinentService } from './add-continent.service';
 
 describe('AddContinentService', () => {

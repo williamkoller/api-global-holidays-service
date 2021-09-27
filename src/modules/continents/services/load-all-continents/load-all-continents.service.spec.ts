@@ -1,7 +1,7 @@
 import { InternalServerErrorException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { AddContinentDto } from '../../dtos/add-continent/add-continent.dto';
-import { ContinentsRepository } from '../../repositories/continents.repository';
+import { AddContinentDto } from '@/modules/continents/dtos/add-continent/add-continent.dto';
+import { ContinentsRepository } from '@/modules/continents/repositories/continents.repository';
 import { LoadAllContinentsService } from './load-all-continents.service';
 
 describe('LoadAllContinents', () => {

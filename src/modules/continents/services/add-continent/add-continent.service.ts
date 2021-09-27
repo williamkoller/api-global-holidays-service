@@ -1,7 +1,7 @@
 import { ContinentEntity } from '@/infra/typeorm/entities/continent-entity/continent.entity';
 import { ConflictException, Injectable } from '@nestjs/common';
-import { AddContinentDto } from '../../dtos/add-continent/add-continent.dto';
-import { ContinentsRepository } from '../../repositories/continents.repository';
+import { AddContinentDto } from '@/modules/continents/dtos/add-continent/add-continent.dto';
+import { ContinentsRepository } from '@/modules/continents/repositories/continents.repository';
 
 @Injectable()
 export class AddContinentService {

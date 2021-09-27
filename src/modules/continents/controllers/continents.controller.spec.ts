@@ -1,9 +1,9 @@
 import { ContinentEntity } from '@/infra/typeorm/entities/continent-entity/continent.entity';
 import { BadRequestException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { AddContinentService } from '../services/add-continent/add-continent.service';
-import { LoadAllContinentsService } from '../services/load-all-continents/load-all-continents.service';
-import { ContinentsController } from './continents.controller';
+import { AddContinentService } from '@/modules/continents/services/add-continent/add-continent.service';
+import { LoadAllContinentsService } from '@/modules/continents/services/load-all-continents/load-all-continents.service';
+import { ContinentsController } from '@/modules/continents/controllers/continents.controller';
 
 describe('ContinentsController', () => {
   let controller: ContinentsController;

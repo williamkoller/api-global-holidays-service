@@ -1,8 +1,9 @@
 import { ContinentEntity } from '@/infra/typeorm/entities/continent-entity/continent.entity';
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { AddContinentDto } from '../dtos/add-continent/add-continent.dto';
-import { AddContinentService } from '../services/add-continent/add-continent.service';
-import { LoadAllContinentsService } from '../services/load-all-continents/load-all-continents.service';
+import { AddContinentDto } from '@/modules/continents/dtos/add-continent/add-continent.dto';
+import { AddContinentService } from '@/modules/continents/services/add-continent/add-continent.service';
+import { LoadAllContinentsService } from '@/modules/continents/services/load-all-continents/load-all-continents.service';
+import { ContinentOutputType } from '@/modules/continents/types/continent-output.type';
 
 @Controller('continents')
 export class ContinentsController {
@@ -19,7 +20,7 @@ export class ContinentsController {
   }
 
   @Get()
-  public async loadAll(): Promise<ContinentEntity[]> {
+  public async loadAll(): Promise<ContinentOutputType[]> {
     return await this.loadAllContinentsService.loadAll();
   }
 }

@@ -1,7 +1,6 @@
-import { ContinentEntity } from '@/infra/typeorm/entities/continent-entity/continent.entity';
 import { Test, TestingModule } from '@nestjs/testing';
-import { AddContinentDto } from '@/modules/continents/dtos/add-continent/add-continent.dto';
 import { ContinentsRepository } from './continents.repository';
+import { mockContinent, mockContinents } from '../test/mock-continent';
 
 type mockQueryType = {
   where: {
@@ -11,9 +10,7 @@ type mockQueryType = {
 
 describe('ContinentRepository', () => {
   let continentsRepository: ContinentsRepository;
-  let mockData: AddContinentDto;
   let mockQuery: mockQueryType;
-  let mockDataArray;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -22,26 +19,6 @@ describe('ContinentRepository', () => {
 
     continentsRepository =
       module.get<ContinentsRepository>(ContinentsRepository);
-
-    mockData = {
-      name: 'America',
-      territorialExtension: 30198835,
-      numberOfCountries: 53,
-      population: 1100000000,
-      demographicDensity: 34,
-      urbanPopulation: 40,
-    } as ContinentEntity;
-
-    mockDataArray = [
-      {
-        name: 'America',
-        territorialExtension: 30198835,
-        numberOfCountries: 53,
-        population: 1100000000,
-        demographicDensity: 34,
-        urbanPopulation: 40,
-      },
-    ];
 
     mockQuery = {
       where: {
@@ -64,15 +41,17 @@ describe('ContinentRepository', () => {
   });
 
   it('should be called save with correct params', async () => {
-    continentsRepository.save = jest.fn().mockReturnValue(mockData);
-    continentsRepository.create = jest.fn().mockReturnValue(mockData);
-    await continentsRepository.addContinent(mockData);
-    expect(continentsRepository.save).toBeCalledWith(mockData);
+    continentsRepository.save = jest.fn().mockReturnValue(mockContinent());
+    continentsRepository.create = jest.fn().mockReturnValue(mockContinent());
+    await continentsRepository.addContinent(mockContinent());
+    expect(continentsRepository.save).toBeCalledWith(mockContinent());
   });
 
   it('should be returns created data', async () => {
-    (continentsRepository.save as jest.Mock).mockReturnValue(mockData);
-    expect(await continentsRepository.addContinent(mockData)).toEqual(mockData);
+    (continentsRepository.save as jest.Mock).mockReturnValue(mockContinent());
+    expect(await continentsRepository.addContinent(mockContinent())).toEqual(
+      mockContinent(),
+    );
   });
 
   it('should be called loadByName with correct params', async () => {
@@ -94,8 +73,8 @@ describe('ContinentRepository', () => {
   });
 
   it('should be called loadAll with correct params', async () => {
-    continentsRepository.find = jest.fn().mockReturnValue(mockDataArray);
+    continentsRepository.find = jest.fn().mockReturnValue(mockContinents());
     await continentsRepository.loadAll();
-    expect(await continentsRepository.find()).toEqual(mockDataArray);
+    expect(await continentsRepository.find()).toEqual(mockContinents());
   });
 });

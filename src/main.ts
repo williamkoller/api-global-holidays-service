@@ -3,6 +3,7 @@ import { AppModule } from '@/modules/app/app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { ConfigService } from '@nestjs/config';
 import { Logger } from '@nestjs/common';
+import { swagger } from '@/docs/swagger';
 
 async function bootstrap(): Promise<void> {
   const logger = new Logger('Main');
@@ -14,6 +15,8 @@ async function bootstrap(): Promise<void> {
   });
 
   app.setGlobalPrefix('api');
+
+  swagger(app);
 
   const config = app.get<ConfigService>(ConfigService);
   const port = config.get<string>('port');

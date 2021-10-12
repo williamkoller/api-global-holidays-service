@@ -90,10 +90,25 @@ describe('ContinentRepository', () => {
   });
 
   describe('updateContinent()', () => {
-    it('should be called findOne with correct params', async () => {
-      continentsRepository.findOne = jest.fn().mockReturnValue(mockContinent);
-      await continentsRepository.updateContinent(1);
-      expect(continentsRepository.findOne).toBeCalledWith(1);
+    it('should be called merge with correct params', async () => {
+      continentsRepository.merge = jest.fn().mockReturnValue(mockContinent());
+      continentsRepository.save = jest.fn().mockReturnValue(mockContinent());
+      const continent = {
+        id: 1,
+        name: 'America',
+        territorialExtension: 30198835,
+        numberOfCountries: 53,
+        population: 1100000000,
+        demographicDensity: 34,
+        urbanPopulation: 40,
+        createdAt: new Date('2021-09-29T02:08:03.658Z'),
+        updatedAt: new Date('2021-09-29T02:08:03.658Z'),
+      };
+      const continentUpdate = {
+        name: 'África',
+      };
+      await continentsRepository.updateContinent(continent, continentUpdate);
+      expect(continentsRepository.save).toBeCalledWith(continent);
     });
   });
 });

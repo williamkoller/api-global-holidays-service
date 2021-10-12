@@ -5,6 +5,7 @@ import { forwardRef, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ContinentsModule } from '@/modules/continents/continents.module';
+import { CountriesModule } from '../countries/countries.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { ContinentsModule } from '@/modules/continents/continents.module';
     }),
     TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
     forwardRef(() => ContinentsModule),
+    forwardRef(() => CountriesModule),
   ],
   controllers: [],
   providers: [],

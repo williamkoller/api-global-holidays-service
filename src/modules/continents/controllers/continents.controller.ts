@@ -4,7 +4,9 @@ import { AddContinentDto } from '@/modules/continents/dtos/add-continent/add-con
 import { AddContinentService } from '@/modules/continents/services/add-continent/add-continent.service';
 import { LoadAllContinentsService } from '@/modules/continents/services/load-all-continents/load-all-continents.service';
 import { ContinentOutputType } from '@/modules/continents/types/continent-output.type';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('continents')
 @Controller('continents')
 export class ContinentsController {
   constructor(

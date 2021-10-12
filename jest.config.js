@@ -7,6 +7,7 @@ module.exports = {
     '!<rootDir>/src/infra/**',
     '!<rootDir>/src/main.ts',
     '!<rootDir>/src/modules/**/dtos/**',
+    '!<rootDir>/src/docs/**/*.ts',
     '!**/test/**',
   ],
   coverageDirectory: 'coverage',

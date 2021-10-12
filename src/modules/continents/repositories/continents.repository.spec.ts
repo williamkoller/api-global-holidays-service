@@ -34,6 +34,7 @@ describe('ContinentRepository', () => {
     continentsRepository.findOne = jest.fn();
     continentsRepository.find = jest.fn();
     continentsRepository.merge = jest.fn();
+    continentsRepository.delete = jest.fn();
     continentsRepository.createQueryBuilder = jest.fn().mockReturnValue({
       where: jest.fn().mockReturnThis(),
       getOne: jest.fn().mockResolvedValue('África'),
@@ -112,6 +113,14 @@ describe('ContinentRepository', () => {
       };
       await continentsRepository.updateContinent(continent, continentUpdate);
       expect(continentsRepository.save).toBeCalledWith(continent);
+    });
+  });
+
+  describe('deleteContinent()', () => {
+    it('should be called delete with correct params', async () => {
+      continentsRepository.delete = jest.fn().mockReturnValue(1);
+      await continentsRepository.deleteContinent(1);
+      expect(continentsRepository.delete).toBeCalledWith(1);
     });
   });
 });

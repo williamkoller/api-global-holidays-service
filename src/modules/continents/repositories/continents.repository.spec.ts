@@ -1,6 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ContinentsRepository } from './continents.repository';
-import { mockContinent, mockContinents } from '../test/mock-continent';
+import {
+  mockContinent,
+  mockContinents,
+} from '@/modules/continents/test/mock-continent';
 
 type mockQueryType = {
   where: {

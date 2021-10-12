@@ -1,7 +1,7 @@
 import { ContinentEntity } from '@/infra/typeorm/entities/continent-entity/continent.entity';
 import { EntityRepository, Repository } from 'typeorm';
 import { AddContinentDto } from '@/modules/continents/dtos/add-continent/add-continent.dto';
-import { UpdateContinentDto } from '../dtos/update-continent/update-continent.dto';
+import { UpdateContinentDto } from '@/modules/continents/dtos/update-continent/update-continent.dto';
 
 @EntityRepository(ContinentEntity)
 export class ContinentsRepository extends Repository<ContinentEntity> {

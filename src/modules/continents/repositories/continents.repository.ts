@@ -1,6 +1,7 @@
 import { ContinentEntity } from '@/infra/typeorm/entities/continent-entity/continent.entity';
 import { EntityRepository, Repository } from 'typeorm';
 import { AddContinentDto } from '@/modules/continents/dtos/add-continent/add-continent.dto';
+import { UpdateContinentDto } from '../dtos/update-continent/update-continent.dto';
 
 @EntityRepository(ContinentEntity)
 export class ContinentsRepository extends Repository<ContinentEntity> {
@@ -25,7 +26,11 @@ export class ContinentsRepository extends Repository<ContinentEntity> {
     return await this.find();
   }
 
-  public async updateContinent(id: number): Promise<ContinentEntity> {
-    return await this.findOne(id);
+  public async updateContinent(
+    continent: ContinentEntity,
+    updateContinentDto: UpdateContinentDto,
+  ): Promise<ContinentEntity> {
+    const continentUpdated = this.merge(continent, { ...updateContinentDto });
+    return await this.save(continentUpdated);
   }
 }

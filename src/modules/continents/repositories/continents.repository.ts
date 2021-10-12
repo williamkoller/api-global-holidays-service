@@ -33,4 +33,8 @@ export class ContinentsRepository extends Repository<ContinentEntity> {
     const continentUpdated = this.merge(continent, { ...updateContinentDto });
     return await this.save(continentUpdated);
   }
+
+  public async deleteContinent(id: number): Promise<void> {
+    await this.delete(id);
+  }
 }
